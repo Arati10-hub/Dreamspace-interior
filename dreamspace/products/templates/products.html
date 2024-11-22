@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<div class="product-grid">
+
+{% for product in products %}
+
+
+
+  {% include 'card.html' with p=product only %}
+
+
+
+{% endfor %}
+
+</div>
+
+
+
+{% endblock %}

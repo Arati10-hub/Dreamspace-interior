@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+
+<h1>Cart details</h1>
+<h1>Total: {{total}}</h1>
+<hr>
+{% for cartitem in cartitems %}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{cartitem.products.product_image.url}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{cartitem.products}}</h5>
+        <p class="card-text">Quantity: {{cartitem.quantity}}</p>
+        <p class="card-text"><small class="text-muted">$ {{cartitem.products.product_price}}</small></p>
+        <p class="card-text">Quantity: {{cartitem.products.product_description}}</p>
+        <form action="{% url 'update-cart' cartitem.id %}">
+          <button type="button" onclick="updateQuantity(-1,{{cartitem.id}})">-</button>
+          <input type="number" name="quantity" id="quantity{{cartitem.id}}" value="{{cartitem.quantity}}" min="1"
+            max="10">
+          <button type="button" onclick="updateQuantity(+1,{{cartitem.id}})">+</button>
+          <input class="btn btn-primary" type="submit" value="update cart">
+        </form>
+        <a class="btn btn-danger" href="{% url 'delete-cartitem' cartitem.id %}" role="button">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+  <table class="table">
+    <div class="d-flex justify-content-end">
+    <thead class="table-dark">
+      <tr>
+        <th>id</th>
+        <th>Product name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for cartitem in cartitems %}
+      <tr>
+        <td>{{cartitem.products.id}}</td>
+        <td>{{cartitem.products.product_name}}</td>
+        <td>{{cartitem.products.product_price}}</td>
+        <td>{{cartitem.quantity}}</td>
+        <td>{{cartitem.quantity|multiply:cartitem.products.product_price}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </div>
+  </table>
+<br>
+  <a href="{% url 'checkout' %}" type="submit" class="btn btn-info">Checkout</a>
+  <br>
+  <br>
+
+
+<!-- {% for cartitem in cartitems%}
+  
+    <li>{{cartitem.quantity}}</li>
+    
+    <li>{{cartitem.products}}</li>
+    <li>{{cartitem.products.product_price}}</li>
+    <img src="{{cartitem.products.product_image.url}}" alt="">
+    <hr>
+
+{% endfor%} -->
+{% endblock %}

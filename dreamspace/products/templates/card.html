@@ -1,0 +1,29 @@
+{% load static %}
+
+
+<div class="product-grid">
+
+    <a  href="{% url 'product-detail' p.id%}">
+    <div class="product" >
+        <img src="{{p.product_image.url}}" alt="">
+
+    </a>
+        <p>{{p.product_name}}</p>
+        <h5>{{p.product_description}}</h5>
+        
+        <p><span class="price"><i class="fa-solid fa-rupee-sign" style="color: #000000;"></i><i> </i>{{p.product_price}}/-</span></p>
+        
+        <form action="{% url 'add-to-cart' p.id %}">
+             <button type="button" class="btn col-1 p-0" onclick="updateQuantity(-1,{{p.id}})">-</button>
+          <input type="number" name="quantity" id="quantity{{p.id}}" value="1" min="1" max="10">
+          <button type="button" class="btn col-1 p-0" onclick="updateQuantity(+1,{{p.id}})">+</button>
+          <br>
+          <input  type="submit" class="btn btn-dark" value="Add to cart">
+          </form>
+
+        <p>{{username}}</p>
+    </div> 
+</div> 
+<br>
+
+    
