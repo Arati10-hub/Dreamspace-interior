@@ -1,0 +1,13 @@
+
+
+{% load static %}
+{% block content %}
+
+<img src="{% static 'img/payment-done.png' %}"  style="margin-left: 30%;">
+<br>
+
+<a href="{% url 'home' %}">
+<button type="submit" class="btn btn-dark" style="margin-left: 42%; 
+background-color: black; color: white;">Go to Home</button></a>
+
+{% endblock %}

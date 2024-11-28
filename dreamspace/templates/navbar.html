@@ -1,42 +1,52 @@
 {% load static %}
 
-<nav>
-    <label for="logo" class="logo">DreamSpace</label>
 
-    <ul>
-      <li> <form class="d-flex w-10" action="{% url 'search' %}">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
-        {% comment %} <button class="btn btn-outline-success" type="submit">Search</button> {% endcomment %}
-        <i class="bi bi-arrow-right-circle-fill" type="submit"></i>
-      </form></li>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#footer">About Us</a></li>
-      <li><a href="{% url 'products' %}" target="_blank">Products</a></li>
+  <!-- Header section start -->
+ 
 
-      {% if request.user.first_name %}
 
-        
-      <a class="btn btn-secondary mx-2" href="{% url 'login'%}" role="button">{{request.user.first_name}}</a>
-      <a class="btn btn-secondary mx-2" href="{% url 'logout' %}" role="button" id="button">Logout</a>
-  
-      
-      {% else %}
-  
-      <a class="btn btn-secondary mx-2" href="{% url 'login'%}" role="button">Login</a>
-      <a class="btn btn-secondary mx-2" href="{% url 'register'%}" role="button">Register</a>
-      {% endif %}
-
-     
-      <a href="{% url 'cart' %}"><svg style="color:Black;" xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64l0 48-128 0 0-48zm-48 48l-64 0c-26.5 0-48 21.5-48 48L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-208c0-26.5-21.5-48-48-48l-64 0 0-48C336 50.1 285.9 0 224 0S112 50.1 112 112l0
-         48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg></a>
-
-    </ul> 
-
+  <nav class="navbar">
+    <div class="logo">DreamSpace</div>
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="{% url 'products' %}">Products</a></li>
     
+  
+    <div class="search-login">
+      <li> <form class="d-flex w-10" action="{% url 'search' %}">
+        <input class="form-control me-2 w-15 " type="search" placeholder="Search" aria-label="Search" name="keyword">
+         <button class="btn btn-outline-success " type="submit">Search</button>
+        </form></li>
+
+
+        {% if request.user.first_name %}
         
-   
+              <a class="btn btn-dark" href="{% url 'login'%}" role="button">{{request.user.first_name}}</a>
+              <a class="btn btn-dark" href="{% url 'logout'%}" role="button">Logout</a>
+              
+              
+              {% else %}
+        
+              <a class="btn btn-dark" href="{% url 'login'%}" role="button">Login</a>
+              <a class="btn btn-dark" href="{% url 'register' %}" role="button" id="button">Register</a>
+              
+            
+              {% endif %}
+    </div>
+  </div>
+  <a href="{% url 'cart' %}">  <div class="notification">
+    <i class="fas fa-shopping-bag icon"></i>
+    {% if count %}
+    <div class="badge">{{count}}</div>
+</div></a>
+{% endif %} 
+
+    </ul>
 
   </nav>
+
+  </header>
 
   
 

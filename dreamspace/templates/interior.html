@@ -13,13 +13,10 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="./static/interior.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<script src="interior.js"></script>
-<link rel="stylesheet" href="interior_c.html">
-<link rel="stylesheet" href="interior_gallery.html">
-<link rel="stylesheet" href="{% static '/css/interior.css' %}">
-<link rel="stylesheet" href="{%static 'css/footer.css'%}">
 
-<!-- <link rel="stylesheet" href="{% static '/css/products.css'%}"> -->
+<link rel="stylesheet" href="{% static '/css/interior.css' %}">
+
+
 
   <title>Interior Website</title>
 </head>
@@ -27,67 +24,73 @@
 <body >
 
   <!-- Header section start -->
-  <header>
-    <nav>
-      <label for="logo" class="logo">DreamSpace</label>
-      
-      <ul>
-        
-       <li> <form class="d-flex w-10" action="{% url 'search' %}">
-          <input class="form-control me-2 w-15 " type="search" placeholder="Search" aria-label="Search" name="keyword">
-          <!-- <button class="btn btn-outline-success " type="submit">Search</button> -->
-          <i class="bi bi-arrow-right-circle-fill" type="submit"></i>
-        </form></li>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#footer">About Us</a></li>
-        <li><a href="{% url 'products' %}" target="_blank">Products</a></li>
+ 
+
+
+        <nav class="navbar">
+          <div class="logo">DreamSpace</div>
+          <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#footer">About Us</a></li>
+            <li><a href="{% url 'products' %}">Products</a></li>
           
-      {% if request.user.first_name %}
+      
+       
+            
+          <div class="search-login">
+            <li> <form class="d-flex w-10" action="{% url 'search' %}">
+              <input class="form-control me-2 w-15 " type="search" placeholder="Search" aria-label="Search" name="keyword">
+               <button class="btn btn-outline-success " type="submit">Search</button>
+              </form></li>
+
+
+              {% if request.user.first_name %}
         
-      <a class="btn btn-secondary mx-2" href="{% url 'login'%}" role="button">Login</a>
-      <a class="btn btn-secondary mx-2" href="{% url 'register'%}" role="button">Register</a>
-      
-      
-      {% else %}
+              <a class="btn btn-dark" href="{% url 'login'%}" role="button">{{request.user.first_name}}</a>
+              <a class="btn btn-dark" href="{% url 'logout'%}" role="button">Logout</a>
+              
+              
+              {% else %}
+        
+              <a class="btn btn-dark" href="{% url 'login'%}" role="button">Login</a>
+              <a class="btn btn-dark" href="{% url 'register' %}" role="button" id="button">Register</a>
+              
+            
+              {% endif %}
 
-      <a class="btn btn-secondary mx-2" href="{% url 'login'%}" role="button">Login</a>
-      <a class="btn btn-secondary mx-2" href="{% url 'logout' %}" role="button" id="button">Logout</a>
-      
+          </div>
+
+          <a href="{% url 'cart' %}">  <div class="notification">
+            <i class="fas fa-shopping-bag icon"></i>
+            {% if count %}
+            <div class="badge">{{count}}</div>
+        </div></a>
+        {% endif %} 
+          </ul>
     
-      {% endif %}
-     
-      <a href="{% url 'cart' %}"><svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64l0 48-128 0 0-48zm-48 48l-64 0c-26.5 0-48 21.5-48 48L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-208c0-26.5-21.5-48-48-48l-64 0 0-48C336 50.1 285.9 0 224 0S112 50.1 112 112l0
-         48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg></a>
-      </ul> 
-    
-
-    </nav>
-
-
-
-
-
-
-
-<!-- quote start -->
+        </nav>
+      
+        <!-- Hero Section -->
+        <header id="hero">
+          <div class="hero-text">
+            <h1>Transforming spaces, creating memories.
+              <br><span id="txt">
+                Your dream interior, our expert touch.
+              </span>
+            </h1>
+        
+          </div>
+        </header>
 
 
-    <div class="quote">
-      <p>
-        Transforming spaces,creating memories.
-      </p>
-      <p>
-        Your dream interior,our expert touch.
-      </p>
-    </div>
-
-  </header>
-  <!-- Header section end -->
 
 
-  
 
 
+
+
+
+  <!-- quote section start -->
 
   <div class="lg">
     <div class="img1"><img src="{% static '/img/home hand.png'%}" alt="">
@@ -105,6 +108,12 @@
   <br>
 
 
+<!-- quote end -->
+
+
+<!--home design crave start -->
+
+
   <div class="container">
     <div class="box"><span>The home design you crave</span> </div>
 
@@ -114,13 +123,12 @@
       <br>
       a very long time.
     </p>
-    <button class="btn-1">BOOK FREE CONUSLATANT</button>
+    <a href="{% url 'book_consultation' %}"><button class="btn-1">BOOK FREE CONUSLATANT</button></a>
 
   </div>
 
+<!--home design crave end -->
 
-
-<!-- quote end -->
 
 
 
@@ -150,9 +158,6 @@
         <p>Contemporary & Classy 4BHK</p>
       </div>
 
-      <div class="photo4"><img src="{% static '/img/laminated kitchen.jpg' %}" alt="">
-        <p>Laminated Modular Kitchen</p>
-      </div>
     </div>
   </div>
   
@@ -175,9 +180,11 @@
       <div class="card">
         <!-- <img class="c1" src="{% static '/img/drawing room.webp'%}" alt=""> -->
          
-        <video width="600" height="290" controls>
+        <video width="600" height="330" controls>
           <source src="{% static '/img/guide.mp4' %}" type="video/mp4" class="c1"> 
 </video>
+
+
         <div class="para">
           <p><span>Download home interior guide</span>
             <br>
@@ -189,6 +196,30 @@
       </div>
     </div>
 
+    <br>
+    
+    <main class="categories">
+      <p id="text-shop">Shop By category</p>
+      <div class="category">
+        <img src="{% static '/img/sofa-3.jpg'%}" alt="">
+        <a href="{% url 'category-detail' slug='sofa' %}"><button>Sofa</button></a>
+      </div>
+      <div class="category">
+        <img src="{% static '/img/chair-1.jpg'%}" alt="">
+        <a href="{% url 'category-detail' slug='chair' %}"><button>Chair</button></a>
+      </div>
+      <div class="category">
+        <img src="{% static '/img/teapoy.jpg'%}" alt="">
+        <a href="{% url 'category-detail' slug='table' %}"><button>Table</button></a>
+      </div>
+      <div class="category">
+        <img src="{% static '/img/candle holder.jpg'%}" alt="">
+        <a href="{% url 'category-detail' slug='candle' %}"><button>Candle</button></a>
+      </div>
+
+    </div>
+    </main>
+    <!--  -->
 
     <div class="pn">
 
@@ -298,19 +329,18 @@
 
 
 <!-- footer start -->
-
-  
-
-
-
 <div id="footer">
-  <div class="foot-panel1"><a href="#home">Back to top</a></div>
+  <div class="foot-panel1"><a href="{% url 'home' %}">Back to top</a></div>
   <div class="foot-panel2">
       <ul>
           <p>Get to Know Us</p>
+
           <a>careers</a>
+          <br>
           <a>About DreamSpace</a>
+          <br>
           <a>Portpholio</a>
+          <br>
           <a>DreamSpace Services</a>
 
       </ul>
@@ -318,7 +348,9 @@
       <ul>
           <p>Connect with Us</p>
           <a>Facebook</a>
+          <br>
           <a>Twitter</a>
+          <br>
           <a>Instagram</a>
          
 
@@ -326,18 +358,17 @@
       <ul>
           <p>Make Money with Us</p>
           <a>Built with DreamSpace</a>
+          <br>
           <a>Fullfillment by DreamSpace </a>
+          <br>
           <a>Protect and Build Your Home </a>
+          <br>
           <a> DreamSpace Pay on Merchants</a>
       </ul>
 </div>
-
-
+</div>
 </div>
 
-
-
-<!-- footer end -->
 
 
 

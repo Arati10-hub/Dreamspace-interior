@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="border border-dark m-5 p-5  fs-5" >
+    
+    <h1>Book Free Consultation</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data" >
+        <div class="mb-3 forms">
+        {% csrf_token %}
+        {{ form.as_p }}
+      
+
+        <button type="submit" class="btn btn-dark" style=" background-color: black; color: white;">Submit</button>
+    </form>
+
+</div>
+</div>
+
+    {% endblock %}

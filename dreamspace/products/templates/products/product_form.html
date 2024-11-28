@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="border border-dark m-5 p-5 mb-4 fs-5" >
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+{% for i in form %}
+
+<div class="mb-3 forms">
+   
+    {{i.label_tag}}
+    {{i}}
+
+    
+  </div>
+
+
+{% endfor %}
+
+    <input type="submit"  >
+
+</form>
+
+</div>
+<script>
+
+    inputtags=document.getElementsByTagName("input");
+
+    inputtags.array.forEach(element => {
+
+        element.className="form-control";
+        
+    });
+</script>
+{% endblock %}

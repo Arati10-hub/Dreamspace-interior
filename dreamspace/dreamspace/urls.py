@@ -22,20 +22,27 @@ from products import urls
 from django.conf.urls.static import static
 from . import settings
 from cart import urls
+from consulatant import urls
+from django.urls import path
+
+
+
 
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.home),
+    path('',views.home,name="home"),
     path('gallary/',views.gallary),
     path('calculator/',views.calculator),
     path('products/',include('products.urls')),
     path('register/',views.register,name="register"),
     path('login/',views.user_login,name="login"),
     path('logout/',views.user_logout,name="logout"),
-     path('cart/',include('cart.urls')),
+    path('cart/',include('cart.urls')),
+    path('consulatant/',include('consulatant.urls')),
+
 ]
 
 

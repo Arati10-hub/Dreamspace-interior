@@ -1,8 +1,7 @@
-{% extends 'base.html' %}
+
 {%load static %}
 
 
-{% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +13,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="{% static '/css/products.css' %}">
+    
     <script src="https://unpkg.com/phosphor-icons"></script>
     
 
@@ -26,11 +26,51 @@
 
   <!-- nav start -->
  
-
-  
-  {% comment %} <i class="fa-solid fa-bag-shopping"></i> {% endcomment %}
+  <!-- Header section start -->
  
 
+
+  <nav class="navbar">
+    <div class="logo">DreamSpace</div>
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="#footer">About Us</a></li>
+      <li><a href="{% url 'products' %}">Products</a></li>
+    
+
+    <div class="search-login">
+      <li> <form class="d-flex w-10" action="{% url 'search' %}">
+        <input class="form-control me-2 w-15 " type="search" placeholder="Search" aria-label="Search" name="keyword">
+         <button class="btn btn-outline-success " type="submit">Search</button>
+        </form></li>
+
+
+        {% if request.user.first_name %}
+  
+        <a class="btn btn-dark"  href="{% url 'login'%}" role="button">{{request.user.first_name}}</a>
+        <a class="btn btn-dark " href="{% url 'logout'%}" role="button">Logout</a>
+        
+        
+        {% else %}
+  
+        <a class="btn btn-dark " href="{% url 'login'%}" role="button">Login</a>
+        <a class="btn btn-dark " href="{% url 'register' %}" role="button" id="button">Register</a>
+        
+      
+        {% endif %}
+
+    </div>
+    <a href="{% url 'cart' %}">  <div class="notification">
+      <i class="fas fa-shopping-bag icon"></i>
+      {% if count %}
+      <div class="badge">{{count}}</div>
+  </div></a>
+  {% endif %} 
+
+    </ul>
+
+  </nav>
+  
 
 
  <!-- shop heading start -->
@@ -61,10 +101,13 @@
 
 
 <!-- <h1>Shop</h1> -->
+<section class="product" id="product">
 
+  <h1 class="heading"><span>Product</span> </h1>
 
+  <div class="box-container" >
 
-<div class="product-grid">
+    
 
 {% for product in object_list %}
 
@@ -73,11 +116,57 @@
 {% endfor %}
 
 
+
+</div>
+</section>
+
+
+<!-- footer start -->
+
+  
+<div id="footer">
+  <div class="foot-panel1"><a href="#home">Back to top</a></div>
+  <div class="foot-panel2">
+      <ul>
+          <p>Get to Know Us</p>
+
+          <a>careers</a>
+          <br>
+          <a>About DreamSpace</a>
+          <br>
+          <a>Portpholio</a>
+          <br>
+          <a>DreamSpace Services</a>
+
+      </ul>
+
+      <ul>
+          <p>Connect with Us</p>
+          <a>Facebook</a>
+          <br>
+          <a>Twitter</a>
+          <br>
+          <a>Instagram</a>
+         
+
+      </ul>
+      <ul>
+          <p>Make Money with Us</p>
+          <a>Built with DreamSpace</a>
+          <br>
+          <a>Fullfillment by DreamSpace </a>
+          <br>
+          <a>Protect and Build Your Home </a>
+          <br>
+          <a> DreamSpace Pay on Merchants</a>
+      </ul>
+</div>
+</div>
 </div>
 
+<!-- footer end -->
 
 
-{% endblock  %}
 
 
 

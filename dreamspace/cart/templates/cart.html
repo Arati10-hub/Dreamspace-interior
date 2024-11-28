@@ -3,38 +3,50 @@
 
 {% block content %}
 
-<h1>Cart details</h1>
+<h1 class="bg-dark text-white">Cart details</h1>
 <h1>Total: {{total}}</h1>
 <hr>
+
 {% for cartitem in cartitems %}
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{cartitem.products.product_image.url}}" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{cartitem.products}}</h5>
-        <p class="card-text">Quantity: {{cartitem.quantity}}</p>
-        <p class="card-text"><small class="text-muted">$ {{cartitem.products.product_price}}</small></p>
-        <p class="card-text">Quantity: {{cartitem.products.product_description}}</p>
-        <form action="{% url 'update-cart' cartitem.id %}">
-          <button type="button" onclick="updateQuantity(-1,{{cartitem.id}})">-</button>
-          <input type="number" name="quantity" id="quantity{{cartitem.id}}" value="{{cartitem.quantity}}" min="1"
+
+      <div class="box-container" style="border: 1px solid rgba(61, 60, 60, 0.247); width: 800px;
+      margin-left: 10%; box-shadow: 0px 1px rgba(175, 173, 173, 0.877); ">
+      <img src="{{cartitem.products.product_image.url}}" class="img-fluid rounded-start" style="padding: 20px; width:320px ; height:250px ;">
+    
+    <div class="col-md-8" style="display: inline;">
+      <div class="card-body" style="float:right; margin-right:20%">
+        <h2 class="card-title">{{cartitem.products}}</h2>
+        <h4 class="card-text">Quantity: {{cartitem.quantity}}</h4>
+        <h4 class="card-text"><small class="text-muted">$ {{cartitem.products.product_price}}</small></4>
+        <h5 class="card-text">Quantity: {{cartitem.products.product_description}}</h5>
+        <br>
+        <form action="{% url 'update-cart' cartitem.id %}" class="fs-5" >
+          <button type="button"  onclick="updateQuantity(-1,{{cartitem.id}})">-</button>
+          <input type="number"name="quantity" id="quantity{{cartitem.id}}" value="{{cartitem.quantity}}" min="1"
             max="10">
           <button type="button" onclick="updateQuantity(+1,{{cartitem.id}})">+</button>
+          <br>
           <input class="btn btn-primary" type="submit" value="update cart">
+          <a class="btn btn-danger" href="{% url 'delete-cartitem' cartitem.id %}" role="button" >Delete</a>
         </form>
-        <a class="btn btn-danger" href="{% url 'delete-cartitem' cartitem.id %}" role="button">Delete</a>
+     
+
+        
       </div>
     </div>
   </div>
 </div>
+</div>
+<br>
+<br>
+
 {% endfor %}
 
-  <table class="table">
-    <div class="d-flex justify-content-end">
-    <thead class="table-dark">
+
+
+  <table class="table" style="width: 800px; margin-left: 20%; ">
+    <div class="d-flex justify-content-end" >
+    <thead class="table-dark" style="font-size: 15px">
       <tr>
         <th>id</th>
         <th>Product name</th>
@@ -46,7 +58,7 @@
 
     <tbody>
       {% for cartitem in cartitems %}
-      <tr>
+      <tr style="font-size: 15px; font-weight: 400;">
         <td>{{cartitem.products.id}}</td>
         <td>{{cartitem.products.product_name}}</td>
         <td>{{cartitem.products.product_price}}</td>
@@ -58,19 +70,10 @@
   </div>
   </table>
 <br>
-  <a href="{% url 'checkout' %}" type="submit" class="btn btn-info">Checkout</a>
+  <a href="{% url 'checkout' %}" type="submit" class="btn btn-info" style="margin-left:40%;">Checkout</a>
   <br>
   <br>
 
 
-<!-- {% for cartitem in cartitems%}
-  
-    <li>{{cartitem.quantity}}</li>
-    
-    <li>{{cartitem.products}}</li>
-    <li>{{cartitem.products.product_price}}</li>
-    <img src="{{cartitem.products.product_image.url}}" alt="">
-    <hr>
 
-{% endfor%} -->
 {% endblock %}

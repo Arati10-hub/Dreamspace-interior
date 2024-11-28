@@ -1,21 +1,16 @@
 {% load static %}
 
-
-<div class="product-grid">
-
-    <a  href="{% url 'product-detail' p.id%}">
-    <div class="product" >
-        <img src="{{p.product_image.url}}" alt="">
-
-    </a>
-        <p>{{p.product_name}}</p>
-        <h5>{{p.product_description}}</h5>
+<div class="box-container">
+    <a href="{% url 'product-detail' p.id %}">
+        <div class="box">
+            <img src="{{p.product_image.url}}" alt=""></a>
+            <h3>{{p.product_name}}</h3>
+            <div class="price">$ {{p.product_price}}/-</div>
+             <h4>{{p.product_description}}</h4> 
         
-        <p><span class="price"><i class="fa-solid fa-rupee-sign" style="color: #000000;"></i><i> </i>{{p.product_price}}/-</span></p>
-        
-        <form action="{% url 'add-to-cart' p.id %}">
+         <form action="{% url 'add-to-cart' p.id %}">
              <button type="button" class="btn col-1 p-0" onclick="updateQuantity(-1,{{p.id}})">-</button>
-          <input type="number" name="quantity" id="quantity{{p.id}}" value="1" min="1" max="10">
+          <input type="number" class="btn col-4 p-0"name="quantity" id="quantity{{p.id}}" value="1" min="1" max="10">
           <button type="button" class="btn col-1 p-0" onclick="updateQuantity(+1,{{p.id}})">+</button>
           <br>
           <input  type="submit" class="btn btn-dark" value="Add to cart">
@@ -23,7 +18,8 @@
 
         <p>{{username}}</p>
     </div> 
-</div> 
-<br>
+</div>
+
+
 
     

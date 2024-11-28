@@ -1,14 +1,15 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 {% block content %}
+<section class="product" id="product">
 
-<div class="product-grid"  >
+    <h1 class="heading"> <span>product</span> </h1>
+<div class="box-container">
+    
 
-    {% include "card.html" with p=product %}
-
+    {% include 'card.html' with p=product %}
 </div>
+</section>
 {% endblock %}
-
 
 
 
