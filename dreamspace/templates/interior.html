@@ -44,14 +44,13 @@
               </form></li>
 
 
-              {% if request.user.first_name %}
-        
+              {% if request.user.first_name %}  
               <a class="btn btn-dark" href="{% url 'login'%}" role="button">{{request.user.first_name}}</a>
               <a class="btn btn-dark" href="{% url 'logout'%}" role="button">Logout</a>
-              
+               
               
               {% else %}
-        
+
               <a class="btn btn-dark" href="{% url 'login'%}" role="button">Login</a>
               <a class="btn btn-dark" href="{% url 'register' %}" role="button" id="button">Register</a>
               
@@ -181,7 +180,7 @@
         <!-- <img class="c1" src="{% static '/img/drawing room.webp'%}" alt=""> -->
          
         <video width="600" height="330" controls>
-          <source src="{% static '/img/guide.mp4' %}" type="video/mp4" class="c1"> 
+          <source src="{% static '/img/interior design imp.mp4' %}" type="video/mp4" class="c1"> 
 </video>
 
 
@@ -191,7 +190,7 @@
             Don't forget to consider these fundamental design
             guidelines to know before you start interior designing!
           </p>
-          <button class="bt">Download Now</button>
+          <a href="{% url 'download-pdf' %}"><button class="bt">Download Now</button></a>
         </div>
       </div>
     </div>

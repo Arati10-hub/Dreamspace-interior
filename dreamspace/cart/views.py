@@ -31,7 +31,9 @@ def add_to_cart(request,productId):
     else:
         cartitem.quantity += quantity 
     
-    cartitem.save() #we are connected with the object
+    cartitem.save()
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+    
     return HttpResponseRedirect("/products")
 
 @login_required(login_url="/login")

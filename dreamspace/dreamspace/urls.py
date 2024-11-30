@@ -42,8 +42,10 @@ urlpatterns = [
     path('logout/',views.user_logout,name="logout"),
     path('cart/',include('cart.urls')),
     path('consulatant/',include('consulatant.urls')),
-
+    path('download-pdf/', views.download_pdf, name='download-pdf'),
 ]
+
+
 
 
 

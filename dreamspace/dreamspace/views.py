@@ -2,7 +2,9 @@ from django.shortcuts import render,HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate,login,logout
-
+from django.http import FileResponse, HttpResponse
+import os
+from django.conf import settings
 
 
 def home(request):
@@ -51,3 +53,21 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect("/login")
+
+
+
+
+
+
+
+def download_pdf(request):
+    
+    file_path = os.path.join(settings.BASE_DIR,'static','img', "guidline.pdf")
+    
+   
+    try:
+        return FileResponse(open(file_path, 'rb'), content_type='application/pdf', as_attachment=True, filename='guidline.pdf')
+    except FileNotFoundError:
+        return HttpResponse("File not found", status=404)
+
+
