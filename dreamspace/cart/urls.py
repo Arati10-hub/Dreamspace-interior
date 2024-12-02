@@ -10,6 +10,7 @@ path('delete-cartitem/<int:cartitemId>/',views.delete_cartitem,name="delete-cart
 path('checkout/',views.checkout,name="checkout"),
 path('payment/<str:orderId>/',views.payment,name="payment"),
 path('success/<str:orderId>/',views.paymentSuccess,name="success"),
+path('orders',views.orders,name="orders"),
 
 
 

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+
+  {% for order in orders %}
+
+  <h1>order id:{{order.order_id}}</h1>
+
+  
+  
+    {% for orderitem in order.orderitem_set.all %}
+
+
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{orderitem.products.product_image.url}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{orderitem.products.product_name}}</h5>
+              <p class="card-text">{{orderitem.products.product_description}}</p>
+
+              <p class="card-text"><small class="text-muted">Quantity:{{orderitem.quantity}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
+    {% endfor %}
+  
+  
+  
+     
+   
+
+
+
+
+  {% endfor %}
+ 
+
+{% endblock %}

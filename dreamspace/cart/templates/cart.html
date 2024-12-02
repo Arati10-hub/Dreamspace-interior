@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
 {% load custom_filters %}
+{% load static %}
 
 {% block content %}
-
+{% if cartitems.count %}
 <h1 class="bg-dark text-white">Cart details</h1>
 <h1>Total: {{total}}</h1>
 <hr>
 
 {% for cartitem in cartitems %}
 
-      <div class="box-container" style="border: 1px solid rgba(61, 60, 60, 0.247); width: 800px;
+  <div class="box-container" style="border: 1px solid rgba(61, 60, 60, 0.247); width: 1000px;
       margin-left: 10%; box-shadow: 0px 1px rgba(175, 173, 173, 0.877); ">
       <img src="{{cartitem.products.product_image.url}}" class="img-fluid rounded-start" style="padding: 20px; width:320px ; height:250px ;">
     
-    <div class="col-md-8" style="display: inline;">
-      <div class="card-body" style="float:right; margin-right:20%">
+    <div class="col-md-8" style="display: inline; float:right;margin-left: 40%;">
+      <div class="card-body" style="float:right; ;margin-top: -36%;">
         <h2 class="card-title">{{cartitem.products}}</h2>
         <h4 class="card-text">Quantity: {{cartitem.quantity}}</h4>
         <h4 class="card-text"><small class="text-muted">$ {{cartitem.products.product_price}}</small></4>
@@ -35,8 +36,7 @@
       </div>
     </div>
   </div>
-</div>
-</div>
+
 <br>
 <br>
 
@@ -74,6 +74,12 @@
   <br>
   <br>
 
+  {% else %}
 
 
-{% endblock %}
+  <h1 style="margin-left: 40%;">Cart is empty</h1>
+  <img src="{% static '/img/cart_empty.png' %}" alt="" style="margin-left: 40%;">
+  
+  {% endif %}
+  {% endblock%} 
+

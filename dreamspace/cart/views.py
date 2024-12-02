@@ -127,17 +127,45 @@ def paymentSuccess(request,orderId):
     client=razorpay.Client(auth=("rzp_test_sJkKGGnWVcM4PR","ensFrG1qUljbnOrUJS6F1rmJ"))
     payment_check=client.utility.verify_payment_signature(razorpay_response)
     if payment_check:
-        
         print("order is paid")
         order=Order.objects.get(order_id=orderId)
         order.paid=True
         order.save()
+
         send_mail(f"[{order.order_id} placed]",
-                  "Order Placed Successfully...",
+                  "Order placed successfully...",
                   EMAIL_HOST_USER,
-                  ["artlachure@gmail.com"],
-                  fail_silently=False
+                  ["artilachure@gmail.com"],
+                  fail_silently=False)
+        
+        currentUser=request.user
+        cart=Cart.objects.get(user=currentUser)
+        cartitems=cart.cartitem_set.all()
+        total=0
+        for cartitem in  cartitems:
+             cartitem.delete()
 
-                  )
+    return render(request,"success.html",{"orderitems":order.orderitem_set.all()})
 
-    return render(request,"success.html")
+
+def orders(request):
+    orders=Order.objects.filter(user=request.user)
+    return render(request,"orders.html",{"orders":orders})
+
+    
+
+          
+        
+    #     print("order is paid")
+    #     order=Order.objects.get(order_id=orderId)
+    #     order.paid=True
+    #     order.save()
+    #     send_mail(f"[{order.order_id} placed]",
+    #               "Order Placed Successfully...",
+    #               EMAIL_HOST_USER,
+    #               ["artlachure@gmail.com"],
+    #               fail_silently=False
+
+    #               )
+
+    # return render(request,"success.html")

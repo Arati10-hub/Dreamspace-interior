@@ -1,13 +1,51 @@
-
-
+{% extends 'base.html' %}
+{% load custom_filters %}
 {% load static %}
+
 {% block content %}
 
 <img src="{% static 'img/payment-done.png' %}"  style="margin-left: 30%;">
 <br>
 
-<a href="{% url 'home' %}">
-<button type="submit" class="btn btn-dark" style="margin-left: 42%; 
-background-color: black; color: white;">Go to Home</button></a>
 
+   <table class="table" style="width: 800px; margin-left: 20%; ">
+      <thead class="table-dark" style="font-size: 15px">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Product name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+    
+        </tr>
+      </thead>
+      <tbody>
+    
+      {% for orderitem in orderitems %}
+    
+        <tr style="font-size: 15px; font-weight: 400;">
+          <th scope="row">{{orderitem.products.id}}</th>
+          <td>{{orderitem.products.product_name}}</td>
+          <td>{{orderitem.products.product_price}}</td>
+          <td>{{orderitem.quantity}}</td>
+          <td>{{orderitem.quantity|multiply:orderitem.products.product_price}}</td>
+    
+        </tr>
+      {% endfor %}
+    
+    
+    
+       
+      </tbody>
+    </table>
+
+<br>
+<br>
+
+    <a href="{% url 'home' %}">
+        <button type="submit" class="btn btn-dark" 
+        style="margin-left: 42%; background-color: black; color: white;">Go to Home</button></a>
+
+        <br>
+<br>
 {% endblock %}
