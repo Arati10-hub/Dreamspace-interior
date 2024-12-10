@@ -27,7 +27,7 @@
             max="10">
           <button type="button" onclick="updateQuantity(+1,{{cartitem.id}})">+</button>
           <br>
-          <input class="btn btn-primary" type="submit" value="update cart">
+          <input class="btn btn-primary" type="submit" value="update bag">
           <a class="btn btn-danger" href="{% url 'delete-cartitem' cartitem.id %}" role="button" >Delete</a>
         </form>
      
@@ -77,8 +77,8 @@
   {% else %}
 
 
-  <h1 style="margin-left: 40%;">Cart is empty</h1>
-  <img src="{% static '/img/cart_empty.png' %}" alt="" style="margin-left: 40%;">
+
+  <img src="{% static '/img/Empty Shopping Bag (1).png' %}" alt="" style="margin-left: 35%; height:600px; width:500px;">
   
   {% endif %}
   {% endblock%} 

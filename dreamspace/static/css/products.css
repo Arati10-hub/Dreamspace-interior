@@ -12,25 +12,30 @@
 
 /* General Styles */
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style-type: none;
+*{
+    
+  margin:0; padding:0;
+  box-sizing: border-box;
+
+  text-decoration: none;
+
 }
 
-html {
-    scroll-behavior: smooth;
-   
-}
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+} 
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
+
+
+body{
+  background:white;
   
+}
+
+ 
   a {
     text-decoration: none;
     color: inherit;
@@ -38,13 +43,15 @@ body {
   
   /* Navbar */
   .navbar {
-    display: flex;
+    top: 0%;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
     padding: 15px 20px;
     box-shadow: 0 20px 10px rgba(0, 0, 0, 0.1);
     height: 80px;
+    position: sticky;
+    z-index: 1000;
   }
   
   .logo {
@@ -107,40 +114,7 @@ body {
     background-color: #ff6600;
   }
 
-*{
-    font-family: 'Roboto', sans-serif;
-    margin:0; padding:0;
-    box-sizing: border-box;
-    outline: none; border:none;
-    text-decoration: none;
-    text-transform: capitalize;
-    transition: .2s linear;
-}
 
-html{
-    font-size: 62.5%;
-    overflow-x: hidden;
-    scroll-padding-top: 9rem;
-    scroll-behavior: smooth;
-}
-
-html::-webkit-scrollbar{
-    width: .8rem;
-}
-
-html::-webkit-scrollbar-track{
-    background: transparent;
-}
-
-html::-webkit-scrollbar-thumb{
-    background: #fff;
-    border-radius: 5rem;
-}
-
-body{
-    background:white;
-    
-}
 
 
 .heading{
@@ -179,9 +153,6 @@ body{
 }
 
 
-
-
-
 .product .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
@@ -206,8 +177,6 @@ body{
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 
 }
-
-
 
 
 .product .box-container .box img{
@@ -298,11 +267,7 @@ color: black;
     font-weight: 300;
     margin-left: 10px;
     }
-    
-    
-    
-   
-    
+        
     /* SHOP SECTION END */
     
     
@@ -357,6 +322,7 @@ font-size: 13px;
   justify-content: space-evenly;
   font-size: 15px;
   font-weight: 200;
+  font-family: "Rajdhani", sans-serif;
 
 }
 
@@ -394,5 +360,5 @@ font-size: 13px;
 
 .forms input
 {
-  border: 2px solid black;
+  border: 1px solid black;
 }

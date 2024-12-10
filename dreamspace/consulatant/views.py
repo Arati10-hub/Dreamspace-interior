@@ -18,8 +18,7 @@ def book_consultation(request):
                 message=f"Name: {consultation.name}\n"
                         f"Email: {consultation.email}\n"
                         f"Contact Number: {consultation.contact_number}\n"
-                        f"Date: {consultation.date}\n"
-                        f"Time Slot: {consultation.time_slot}",
+                        f"Date: {consultation.date}\n",
                 from_email="aishwarya.solkar55@gmail.com",
                 recipient_list=["artilachure@gmail.com"],
                 fail_silently=False,
